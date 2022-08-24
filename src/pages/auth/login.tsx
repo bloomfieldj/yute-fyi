@@ -96,6 +96,30 @@ const Input = styled("input", {
   fontSize: "18px",
 });
 
+const LoadingButton = styled("button", {
+  all: "unset",
+  display: "flex",
+  justifySelf: "center",
+  p: "$3",
+  border: `solid 1px ${"$slate7"}`,
+  color: "$slate11",
+  width: "fit-content",
+  mx: "auto",
+  my: "$2",
+  br: "$4",
+  fontSize: "$3",
+  fontWeight: "500",
+  "@bp1": {
+    fontSize: "$4",
+  },
+  "@bp2": {
+    fontSize: "$5",
+  },
+  background: "$buttonHover",
+  cursor: "not-allowed",
+  transform: "translateY(2px)",
+});
+
 const Button = styled("button", {
   all: "unset",
   display: "flex",
@@ -169,7 +193,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [working, setWorking] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
   const { user } = useUser();
 
@@ -180,12 +203,10 @@ const Login = () => {
   }, [user, router]);
 
   const pageSEO = {
-    title:
-      "FNDRS.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
-    description:
-      "FNDRS.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
+    title: "Login | FNDRS.fyi",
+    description: "Login | FNDRS.fyi",
     image:
-      "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
+      "https://res.cloudinary.com/dligqmt0x/image/upload/v1661320004/fndrs_banner_i5zh0f.png",
   };
 
   const login = async ({ email, password }: Login) => {
@@ -200,7 +221,6 @@ const Login = () => {
       alert(error.message);
     } else {
       setWorking(false);
-      setIsLoggedIn(true);
       router.prefetch("/posts");
       router.push("/posts");
     }
@@ -211,68 +231,64 @@ const Login = () => {
       <SEO tagInfo={pageSEO} />
       <Header />
       <Layout>
-        {!isLoggedIn && (
-          <HeroBox>
-            <Title>FNDRS.fyi</Title>
-            <Subtitle>
-              Sign in to share opportunities with the community
-            </Subtitle>
-          </HeroBox>
-        )}
+        <HeroBox>
+          <Title>FNDRS.fyi</Title>
+          <Subtitle>Sign in to share opportunities with the community</Subtitle>
+        </HeroBox>
 
-        {!isLoggedIn && (
-          <>
-            <Form
-              onSubmit={(e) => {
-                e.preventDefault();
-                login({ email, password });
-              }}
-            >
-              <Fieldset>
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  autoComplete="email"
-                  required
-                />
-              </Fieldset>
+        <>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              login({ email, password });
+            }}
+          >
+            <Fieldset>
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
+                required
+              />
+            </Fieldset>
 
-              <Fieldset>
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </Fieldset>
+            <Fieldset>
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </Fieldset>
 
-              {!working && (
-                <Button type="submit">
-                  <Span>Sign in</Span>
-                </Button>
-              )}
-            </Form>
-            <Div>
-              <p>Forgot your password?</p>
-              <Link href="/auth/password-reset" passHref>
-                <A>Reset it</A>
-              </Link>
-            </Div>
-            <Div>
-              <p>Don&apos;t have an account yet?</p>
-              <Link href="/auth/register" passHref>
-                <A>Sign up</A>
-              </Link>
-            </Div>
-          </>
-        )}
+            {working ? (
+              <LoadingButton>Loading...</LoadingButton>
+            ) : (
+              <Button type="submit">
+                <Span>Sign in</Span>
+              </Button>
+            )}
+          </Form>
+          <Div>
+            <p>Forgot your password?</p>
+            <Link href="/auth/password-reset" passHref>
+              <A>Reset it</A>
+            </Link>
+          </Div>
+          <Div>
+            <p>Don&apos;t have an account yet?</p>
+            <Link href="/auth/register" passHref>
+              <A>Sign up</A>
+            </Link>
+          </Div>
+        </>
       </Layout>
       <Footer />
     </Container>

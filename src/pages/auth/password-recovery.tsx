@@ -134,6 +134,30 @@ const Span = styled("span", {
   color: "$text",
 });
 
+const LoadingButton = styled("button", {
+  all: "unset",
+  display: "flex",
+  justifySelf: "center",
+  p: "$3",
+  border: `solid 1px ${"$slate7"}`,
+  color: "$slate11",
+  width: "fit-content",
+  mx: "auto",
+  my: "$2",
+  br: "$4",
+  fontSize: "$3",
+  fontWeight: "500",
+  "@bp1": {
+    fontSize: "$4",
+  },
+  "@bp2": {
+    fontSize: "$5",
+  },
+  background: "$buttonHover",
+  cursor: "not-allowed",
+  transform: "translateY(2px)",
+});
+
 const RecoverPassword = () => {
   const router = useRouter();
   const [password, setPassword] = useState("");
@@ -172,12 +196,10 @@ const RecoverPassword = () => {
   };
 
   const pageSEO = {
-    title:
-      "FNDRS.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
-    description:
-      "FNDRS.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
+    title: "Reset your password | FNDRS.fyi",
+    description: "Reset your password | FNDRS.fyi",
     image:
-      "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
+      "https://res.cloudinary.com/dligqmt0x/image/upload/v1661320004/fndrs_banner_i5zh0f.png",
   };
 
   return (
@@ -222,9 +244,7 @@ const RecoverPassword = () => {
             />
           </Fieldset>
           {working ? (
-            <Button disabled>
-              <Span>Working...</Span>
-            </Button>
+            <LoadingButton>Updating...</LoadingButton>
           ) : (
             <Button type="submit">
               <Span>Reset password</Span>

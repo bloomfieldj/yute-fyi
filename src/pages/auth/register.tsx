@@ -161,6 +161,30 @@ const Div = styled("div", {
   justifyContent: "center",
 });
 
+const LoadingButton = styled("button", {
+  all: "unset",
+  display: "flex",
+  justifySelf: "center",
+  p: "$3",
+  border: `solid 1px ${"$slate7"}`,
+  color: "$slate11",
+  width: "fit-content",
+  mx: "auto",
+  my: "$2",
+  br: "$4",
+  fontSize: "$3",
+  fontWeight: "500",
+  "@bp1": {
+    fontSize: "$4",
+  },
+  "@bp2": {
+    fontSize: "$5",
+  },
+  background: "$buttonHover",
+  cursor: "not-allowed",
+  transform: "translateY(2px)",
+});
+
 const Register = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -232,12 +256,10 @@ const Register = () => {
   };
 
   const pageSEO = {
-    title:
-      "FNDRS.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
-    description:
-      "FNDRS.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
+    title: "Create an account | FNDRS.fyi",
+    description: "Create an account | FNDRS.fyi",
     image:
-      "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
+      "https://res.cloudinary.com/dligqmt0x/image/upload/v1661320004/fndrs_banner_i5zh0f.png",
   };
 
   return (
@@ -339,9 +361,7 @@ const Register = () => {
           </Fieldset>
 
           {working ? (
-            <Button disabled>
-              <Span>Working...</Span>
-            </Button>
+            <LoadingButton> Loading... </LoadingButton>
           ) : (
             <Button type="submit">
               <Span>Register</Span>
