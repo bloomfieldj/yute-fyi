@@ -149,6 +149,8 @@ type Post = {
   organization: string;
   description: string;
   location: string;
+  min_age: number;
+  max_age: number;
   start_date: Date;
   end_date: Date;
   deadline: Date;
@@ -156,43 +158,24 @@ type Post = {
   user_id: string;
 };
 
-const LoadingButton = styled("button", {
-  all: "unset",
-  display: "flex",
-  justifySelf: "center",
-  p: "$3",
-  border: `solid 1px ${"$slate7"}`,
-  color: "$slate11",
-  width: "fit-content",
-  mx: "auto",
-  my: "$2",
-  br: "$4",
-  fontSize: "$3",
-  fontWeight: "500",
-  "@bp1": {
-    fontSize: "$4",
-  },
-  "@bp2": {
-    fontSize: "$5",
-  },
-  background: "$buttonHover",
-  cursor: "not-allowed",
-  transform: "translateY(2px)",
-});
-
 const Update = ({ post, user }: { post: Post; user: User }) => {
   const pageSEO = {
-    title: "Edit your post. | yute.fyi",
-    description: "Edit your post. | yute.fyi",
+    title:
+      "yute.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
+    description:
+      "yute.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
     image:
       "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
   };
+
   const router = useRouter();
-  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [title, setTitle] = useState<string>(post.title);
   const [organization, setOrganization] = useState<string>(post.organization);
   const [description, setDescription] = useState<string>(post.description);
   const [location, setLocation] = useState<string>(post.location);
+  const [minAge, setMinAge] = useState<number>(post.min_age);
+  const [maxAge, setMaxAge] = useState<number>(post.max_age);
   const [startDate, setStartDate] = useState<Date>(post.start_date);
   const [endDate, setEndDate] = useState<Date>(post.end_date);
   const [deadline, setDeadline] = useState<Date>(post.deadline);
@@ -200,8 +183,6 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
 
   const handleUpdate = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-
-    setSubmitting(true);
 
     if (post.user_id !== user.id) {
       alert("Unable to edit a post that doesn't belong to you.");
@@ -211,13 +192,11 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
 
     if (startDate && endDate && startDate > endDate) {
       alert("The start date must be before the end date.");
-      setSubmitting(false);
       return false;
     }
 
     if (deadline && startDate && deadline > startDate) {
       alert("The regsistration deadline must be before the start date.");
-      setSubmitting(false);
       return false;
     }
 
@@ -227,6 +206,8 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
       organization,
       description,
       location,
+      min_age: minAge,
+      max_age: maxAge,
       start_date: startDate,
       end_date: endDate,
       deadline,
@@ -241,10 +222,10 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
       .eq("id", post.id);
 
     if (error) {
-      setSubmitting(false);
       alert(error.message);
     } else {
       alert("Post updated successfully.");
+      setSubmitted(true);
       router.push("/posts");
     }
   };
@@ -322,6 +303,31 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
           </Fieldset>
 
           <Fieldset>
+            <Label htmlFor="min_age">Ages</Label>
+            <Input
+              type="number"
+              id="min_age"
+              name="min_age"
+              minLength={1}
+              maxLength={2}
+              value={minAge}
+              onChange={(e) => setMinAge(Number(e.target.value))}
+              required
+            />
+            <Label htmlFor="max_age">to</Label>
+            <Input
+              type="number"
+              id="max_age"
+              name="max_age"
+              minLength={1}
+              maxLength={2}
+              value={maxAge}
+              onChange={(e) => setMaxAge(Number(e.target.value))}
+              required
+            />
+          </Fieldset>
+
+          <Fieldset>
             <Label htmlFor="start_date">Start Date</Label>
             <Input
               type="date"
@@ -368,8 +374,10 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
             />
           </Fieldset>
 
-          {submitting ? (
-            <LoadingButton>Updating...</LoadingButton>
+          {submitted ? (
+            <Button disabled>
+              <Span>Submitting...</Span>
+            </Button>
           ) : (
             <Button type="submit">
               <Span>Update</Span>

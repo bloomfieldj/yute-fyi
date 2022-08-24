@@ -14,7 +14,7 @@ import {
   withPageAuth,
 } from "@supabase/auth-helpers-nextjs";
 import { useUser } from "@supabase/auth-helpers-react";
-import DeleteDialog from "@/components/Design-system/DeleteDialog";
+import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 
 const Container = styled("div", {
   height: "100vh",
@@ -139,16 +139,45 @@ const A = styled("a", {
   transition: "all 500ms ease",
 });
 
+const Button = styled("button", {
+  all: "unset",
+  color: "$red9",
+  "&:hover": {
+    cursor: "pointer",
+    color: "$red11",
+  },
+});
+
 const Dashboard = ({ submissions }: { submissions: CardTypes[] }) => {
   const pageSEO = {
-    title: "Dashboard | yute.fyi",
-    description: "Dashboard | yute.fyi",
+    title:
+      "yute.fyi - Free activities, and resources for Black Canadian Youth.",
+    description:
+      "yute.fyi: Connecting Black Canadian Youth with free activities, opportunities, programs and services.",
     image:
       "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
   };
-
   const router = useRouter();
   const { user } = useUser();
+
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
+
+  const deletePost = async (id: string) => {
+    const { error } = await supabaseClient
+      .from("submissions")
+      .delete({ returning: "minimal" })
+      .eq("id", id);
+
+    if (error) {
+      alert(error.message);
+      return false;
+    } else {
+      alert("Post deleted.");
+      refreshData();
+    }
+  };
 
   return (
     <Container>
@@ -197,7 +226,9 @@ const Dashboard = ({ submissions }: { submissions: CardTypes[] }) => {
                           </Link>
                         </Td>
                         <Td>
-                          <DeleteDialog post_id={submission.id} />
+                          <Button onClick={() => deletePost(submission.id)}>
+                            Delete
+                          </Button>
                         </Td>
                       </Tr>
                     );

@@ -138,30 +138,6 @@ const Button = styled("button", {
   transition: "all 300ms ease",
 });
 
-const LoadingButton = styled("button", {
-  all: "unset",
-  display: "flex",
-  justifySelf: "center",
-  p: "$3",
-  border: `solid 1px ${"$slate7"}`,
-  color: "$slate11",
-  width: "fit-content",
-  mx: "auto",
-  my: "$2",
-  br: "$4",
-  fontSize: "$3",
-  fontWeight: "500",
-  "@bp1": {
-    fontSize: "$4",
-  },
-  "@bp2": {
-    fontSize: "$5",
-  },
-  background: "$buttonHover",
-  cursor: "not-allowed",
-  transform: "translateY(2px)",
-});
-
 const Span = styled("span", {
   color: "$text",
 });
@@ -171,8 +147,10 @@ const Add = ({ user }: { user: User }) => {
   const [submitting, setSubmitting] = useState(false);
 
   const pageSEO = {
-    title: "Add new post. | yute.fyi",
-    description: "Add new post. | yute.fyi",
+    title:
+      "yute.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
+    description:
+      "yute.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
     image:
       "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
   };
@@ -185,6 +163,8 @@ const Add = ({ user }: { user: User }) => {
       organization: { value: string };
       description: { value: string };
       location: { value: string };
+      min_age: { value: number };
+      max_age: { value: number };
       start_date: { value: Date };
       end_date: { value: Date };
       deadline: { value: Date };
@@ -196,6 +176,8 @@ const Add = ({ user }: { user: User }) => {
       organization: target.organization.value,
       description: target.description.value,
       location: target.location.value,
+      min_age: target.min_age.value,
+      max_age: target.max_age.value,
       start_date: target.start_date.value,
       end_date: target.end_date.value,
       deadline: target.deadline.value,
@@ -226,6 +208,7 @@ const Add = ({ user }: { user: User }) => {
       if (error) {
         alert(error.message);
       } else {
+        setSubmitting(false);
         router.push("/posts");
       }
     }
@@ -296,6 +279,29 @@ const Add = ({ user }: { user: User }) => {
           </Fieldset>
 
           <Fieldset>
+            <Label htmlFor="min_age">Ages</Label>
+            <Input
+              type="number"
+              id="min_age"
+              name="min_age"
+              minLength={1}
+              maxLength={2}
+              placeholder="0"
+              required
+            />
+            <Label htmlFor="max_age">to</Label>
+            <Input
+              type="number"
+              id="max_age"
+              name="max_age"
+              minLength={1}
+              maxLength={2}
+              placeholder="99"
+              required
+            />
+          </Fieldset>
+
+          <Fieldset>
             <Label htmlFor="start_date">Start Date</Label>
             <Input type="date" id="start_date" name="start_date" required />
             <Label htmlFor="end_date">End Date</Label>
@@ -320,7 +326,9 @@ const Add = ({ user }: { user: User }) => {
           </Fieldset>
 
           {submitting ? (
-            <LoadingButton>Posting...</LoadingButton>
+            <Button disabled>
+              <Span>Submitting...</Span>
+            </Button>
           ) : (
             <Button type="submit">
               <Span>Submit</Span>
