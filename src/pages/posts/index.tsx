@@ -141,10 +141,10 @@ const A = styled("a", {
 
 const Dashboard = ({ submissions }: { submissions: CardTypes[] }) => {
   const pageSEO = {
-    title: "Dashboard | FNDRS.fyi",
-    description: "Dashboard | FNDRS.fyi",
+    title: "Dashboard | yute.fyi",
+    description: "Dashboard | yute.fyi",
     image:
-      "https://res.cloudinary.com/dligqmt0x/image/upload/v1661320004/fndrs_banner_i5zh0f.png",
+      "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
   };
 
   const router = useRouter();

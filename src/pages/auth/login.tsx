@@ -203,10 +203,10 @@ const Login = () => {
   }, [user, router]);
 
   const pageSEO = {
-    title: "Login | FNDRS.fyi",
-    description: "Login | FNDRS.fyi",
+    title: "Login | yute.fyi",
+    description: "Login | yute.fyi",
     image:
-      "https://res.cloudinary.com/dligqmt0x/image/upload/v1661320004/fndrs_banner_i5zh0f.png",
+      "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
   };
 
   const login = async ({ email, password }: Login) => {
@@ -231,7 +231,7 @@ const Login = () => {
       <Header />
       <Layout>
         <HeroBox>
-          <Title>FNDRS.fyi</Title>
+          <Title>yute.fyi</Title>
           <Subtitle>Sign in to share opportunities with the community</Subtitle>
         </HeroBox>
 

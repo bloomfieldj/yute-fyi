@@ -1,6 +1,7 @@
 import { styled, keyframes } from "stitches.config";
 import {
   ExternalLinkIcon,
+  PersonIcon,
   SewingPinFilledIcon,
   Share1Icon,
   CopyIcon,
@@ -96,7 +97,7 @@ const Data = styled("div", {
   display: "flex",
   alignItems: "center",
   flexWrap: "wrap",
-  justifyContent: "space-around",
+  justifyContent: "space-between",
   margin: "auto",
   marginTop: "18px",
 });
@@ -275,12 +276,14 @@ export type CardTypes = {
   organization: string;
   description: string;
   location: string;
+  min_age: number;
+  max_age: number;
   ongoing: boolean;
   deadline: string;
   start_date: string;
   end_date: string;
   url: string;
-  active: boolean;
+  verified: boolean;
   clicks: number;
   copies: number;
   shares: number;
@@ -299,6 +302,8 @@ const Card = (props: CardTypes) => {
     description,
     deadline,
     location,
+    min_age,
+    max_age,
     ongoing,
     start_date,
     end_date,
@@ -373,6 +378,12 @@ const Card = (props: CardTypes) => {
               <p>{location}</p>
             </Info>
             <Info>
+              <PersonIcon />
+              <p>
+                {min_age} - {max_age} y/o
+              </p>
+            </Info>
+            <Info>
               <CalendarIcon />
               {ongoing ? (
                 <p> Ongoing</p>
@@ -400,6 +411,16 @@ const Card = (props: CardTypes) => {
               <Info>
                 <SewingPinFilledIcon />
                 <p>{location}</p>
+              </Info>
+              <Info>
+                <PersonIcon />
+                {max_age ? (
+                  <p>
+                    {min_age} - {max_age} y/o
+                  </p>
+                ) : (
+                  <p> {min_age} &#43; y/o</p>
+                )}
               </Info>
               <Info>
                 <CalendarIcon />

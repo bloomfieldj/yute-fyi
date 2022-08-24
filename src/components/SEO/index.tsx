@@ -16,7 +16,7 @@ interface Props {
 const SEO = ({ tagInfo }: Props) => {
   const router = useRouter();
   const path = router.pathname;
-  const url = "https://www.fndrs.fyi/";
+  const url = "https://www.yute.fyi/";
   const { title, description, image } = tagInfo;
 
   return (

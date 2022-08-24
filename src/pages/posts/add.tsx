@@ -171,10 +171,10 @@ const Add = ({ user }: { user: User }) => {
   const [submitting, setSubmitting] = useState(false);
 
   const pageSEO = {
-    title: "Add new post. | FNDRS.fyi",
-    description: "Add new post. | FNDRS.fyi",
+    title: "Add new post. | yute.fyi",
+    description: "Add new post. | yute.fyi",
     image:
-      "https://res.cloudinary.com/dligqmt0x/image/upload/v1661320004/fndrs_banner_i5zh0f.png",
+      "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
   };
 
   const handleSubmission = async (event: React.SyntheticEvent) => {

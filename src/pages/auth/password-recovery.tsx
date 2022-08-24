@@ -196,10 +196,10 @@ const RecoverPassword = () => {
   };
 
   const pageSEO = {
-    title: "Reset your password | FNDRS.fyi",
-    description: "Reset your password | FNDRS.fyi",
+    title: "Reset your password | yute.fyi",
+    description: "Reset your password | yute.fyi",
     image:
-      "https://res.cloudinary.com/dligqmt0x/image/upload/v1661320004/fndrs_banner_i5zh0f.png",
+      "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
   };
 
   return (
@@ -208,7 +208,7 @@ const RecoverPassword = () => {
       <Header />
       <Layout>
         <HeroBox>
-          <Title>FNDRS.fyi</Title>
+          <Title>yute.fyi</Title>
           <Subtitle>Pick your new password</Subtitle>
         </HeroBox>
 

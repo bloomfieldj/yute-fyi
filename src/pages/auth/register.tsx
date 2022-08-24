@@ -255,10 +255,10 @@ const Register = () => {
   };
 
   const pageSEO = {
-    title: "Create an account | FNDRS.fyi",
-    description: "Create an account | FNDRS.fyi",
+    title: "Create an account | yute.fyi",
+    description: "Create an account | yute.fyi",
     image:
-      "https://res.cloudinary.com/dligqmt0x/image/upload/v1661320004/fndrs_banner_i5zh0f.png",
+      "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
   };
 
   return (
@@ -267,7 +267,7 @@ const Register = () => {
       <Header />
       <Layout>
         <HeroBox>
-          <Title>FNDRS.fyi</Title>
+          <Title>yute.fyi</Title>
           <Subtitle>Sign up to share opportunities with the community</Subtitle>
         </HeroBox>
 
