@@ -14,7 +14,7 @@ import {
   withPageAuth,
 } from "@supabase/auth-helpers-nextjs";
 import { useUser } from "@supabase/auth-helpers-react";
-import { supabaseClient } from "@supabase/auth-helpers-nextjs";
+import DeleteDialog from "@/components/Design-system/DeleteDialog";
 
 const Container = styled("div", {
   height: "100vh",
@@ -139,15 +139,6 @@ const A = styled("a", {
   transition: "all 500ms ease",
 });
 
-const Button = styled("button", {
-  all: "unset",
-  color: "$red9",
-  "&:hover": {
-    cursor: "pointer",
-    color: "$red11",
-  },
-});
-
 const Dashboard = ({ submissions }: { submissions: CardTypes[] }) => {
   const pageSEO = {
     title: "Dashboard | FNDRS.fyi",
@@ -158,25 +149,6 @@ const Dashboard = ({ submissions }: { submissions: CardTypes[] }) => {
 
   const router = useRouter();
   const { user } = useUser();
-
-  const refreshData = () => {
-    router.replace(router.asPath);
-  };
-
-  const deletePost = async (id: string) => {
-    const { error } = await supabaseClient
-      .from("submissions")
-      .delete({ returning: "minimal" })
-      .eq("id", id);
-
-    if (error) {
-      alert(error.message);
-      return false;
-    } else {
-      alert("Post deleted.");
-      refreshData();
-    }
-  };
 
   return (
     <Container>
@@ -225,9 +197,7 @@ const Dashboard = ({ submissions }: { submissions: CardTypes[] }) => {
                           </Link>
                         </Td>
                         <Td>
-                          <Button onClick={() => deletePost(submission.id)}>
-                            Delete
-                          </Button>
+                          <DeleteDialog post_id={submission.id} />
                         </Td>
                       </Tr>
                     );
