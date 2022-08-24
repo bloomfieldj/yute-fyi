@@ -33,12 +33,11 @@ const Container = styled("div", {
 
 const Home = ({ submissions }: { submissions: CardTypes[] }) => {
   const pageSEO = {
-    title:
-      "yute.fyi - Free activities, and resources for Black Canadian Youth.",
+    title: "FNDRS.fyi | Helping support Black Canadian Founders.",
     description:
-      "yute.fyi: Connecting Black Canadian Youth with free activities, opportunities, programs and services.",
+      "FNDRS.fyi is a community platform connecting Black Canadian Founders with the opportunities out there waiting for them. It takes a village.",
     image:
-      "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
+      "https://res.cloudinary.com/dligqmt0x/image/upload/v1661320004/fndrs_banner_i5zh0f.png",
   };
 
   return (

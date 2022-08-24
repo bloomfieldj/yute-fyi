@@ -60,9 +60,9 @@ const Subtitle = styled("h2", {
 const Hero = () => {
   return (
     <HeroBox>
-      <Title>Connecting Black Canadian Youth</Title>
+      <Title>Connecting Black Canadian Founders</Title>
       <Subtitle>
-        with free activities, opportunities, programs and services.
+        with education, services, opportunities and community.
       </Subtitle>
     </HeroBox>
   );

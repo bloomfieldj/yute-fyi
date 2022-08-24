@@ -150,13 +150,12 @@ const Button = styled("button", {
 
 const Dashboard = ({ submissions }: { submissions: CardTypes[] }) => {
   const pageSEO = {
-    title:
-      "yute.fyi - Free activities, and resources for Black Canadian Youth.",
-    description:
-      "yute.fyi: Connecting Black Canadian Youth with free activities, opportunities, programs and services.",
+    title: "Dashboard | FNDRS.fyi",
+    description: "Dashboard | FNDRS.fyi",
     image:
-      "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
+      "https://res.cloudinary.com/dligqmt0x/image/upload/v1661320004/fndrs_banner_i5zh0f.png",
   };
+
   const router = useRouter();
   const { user } = useUser();
 

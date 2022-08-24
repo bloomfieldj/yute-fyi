@@ -147,12 +147,10 @@ const Add = ({ user }: { user: User }) => {
   const [submitting, setSubmitting] = useState(false);
 
   const pageSEO = {
-    title:
-      "yute.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
-    description:
-      "yute.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
+    title: "Add new post. | FNDRS.fyi",
+    description: "Add new post. | FNDRS.fyi",
     image:
-      "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
+      "https://res.cloudinary.com/dligqmt0x/image/upload/v1661320004/fndrs_banner_i5zh0f.png",
   };
 
   const handleSubmission = async (event: React.SyntheticEvent) => {
@@ -163,8 +161,6 @@ const Add = ({ user }: { user: User }) => {
       organization: { value: string };
       description: { value: string };
       location: { value: string };
-      min_age: { value: number };
-      max_age: { value: number };
       start_date: { value: Date };
       end_date: { value: Date };
       deadline: { value: Date };
@@ -176,8 +172,6 @@ const Add = ({ user }: { user: User }) => {
       organization: target.organization.value,
       description: target.description.value,
       location: target.location.value,
-      min_age: target.min_age.value,
-      max_age: target.max_age.value,
       start_date: target.start_date.value,
       end_date: target.end_date.value,
       deadline: target.deadline.value,
@@ -274,29 +268,6 @@ const Add = ({ user }: { user: User }) => {
               minLength={2}
               maxLength={20}
               size={20}
-              required
-            />
-          </Fieldset>
-
-          <Fieldset>
-            <Label htmlFor="min_age">Ages</Label>
-            <Input
-              type="number"
-              id="min_age"
-              name="min_age"
-              minLength={1}
-              maxLength={2}
-              placeholder="0"
-              required
-            />
-            <Label htmlFor="max_age">to</Label>
-            <Input
-              type="number"
-              id="max_age"
-              name="max_age"
-              minLength={1}
-              maxLength={2}
-              placeholder="99"
               required
             />
           </Fieldset>

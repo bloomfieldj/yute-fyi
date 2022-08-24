@@ -1,26 +1,23 @@
 import Head from "next/head";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 // declares types of content in SEO tag info object
 type SEOpropTypes = {
-  title?: string,
-  description?: string,
-  image?: string,
+  title?: string;
+  description?: string;
+  image?: string;
+};
 
-}
-
-// declares type of SEO tag info object 
+// declares type of SEO tag info object
 interface Props {
-  tagInfo: SEOpropTypes
+  tagInfo: SEOpropTypes;
 }
-
 
 const SEO = ({ tagInfo }: Props) => {
-
   const router = useRouter();
   const path = router.pathname;
-  const url = 'https://www.yute.fyi/'
-  const { title, description, image } = tagInfo
+  const url = "https://www.fndrs.fyi/";
+  const { title, description, image } = tagInfo;
 
   return (
     <Head>
@@ -34,7 +31,7 @@ const SEO = ({ tagInfo }: Props) => {
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
     </Head>
-  )
-}
+  );
+};
 
 export default SEO;

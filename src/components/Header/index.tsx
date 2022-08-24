@@ -64,7 +64,7 @@ const Header = () => {
   return (
     <HeaderBox>
       <Link href="/" passHref>
-        <A>yute.fyi</A>
+        <A>FNDRS.fyi</A>
       </Link>
       {/* <DesktopNav /> */}
 

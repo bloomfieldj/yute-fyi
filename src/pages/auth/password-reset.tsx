@@ -167,9 +167,9 @@ const Login = () => {
 
   const pageSEO = {
     title:
-      "yute.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
+      "FNDRS.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
     description:
-      "yute.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
+      "FNDRS.fyi: Add to our list of free activities, opportunities, programs and services for Black Canadian Youth.",
     image:
       "https://res.cloudinary.com/dligqmt0x/image/upload/v1647905264/yute_banner_1_ranvpu.png",
   };
@@ -180,7 +180,7 @@ const Login = () => {
       <Header />
       <Layout>
         <HeroBox>
-          <Title>Yute.fyi</Title>
+          <Title>FNDRS.fyi</Title>
           <Subtitle>Reset your password</Subtitle>
         </HeroBox>
 

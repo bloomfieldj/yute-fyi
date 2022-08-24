@@ -23,7 +23,7 @@ const CTA = () => {
   return (
     <Section>
       <Text>Know something we don&apos;t ?</Text>
-      <LinkButton href="/posts" content="Post now" mx={"auto"} />
+      <LinkButton href="/posts/add" content="Post now" mx={"auto"} />
     </Section>
   );
 };
