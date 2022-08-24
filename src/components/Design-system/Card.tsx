@@ -461,10 +461,7 @@ const Card = (props: CardTypes) => {
                   .writeText(
                     `${title} \n${description}\n${url}${
                       deadline
-                        ? `\nRegister by ${format(
-                            new Date(deadline),
-                            "MMM do yyyy"
-                          )}!`
+                        ? `\nRegister by ${formatDate(deadline)}!`
                         : null
                     }`
                   )
@@ -492,10 +489,7 @@ const Card = (props: CardTypes) => {
                     title: title,
                     text: `${description}${
                       deadline
-                        ? `\nRegister by ${format(
-                            new Date(deadline),
-                            "MMM do yyyy"
-                          )}!`
+                        ? `\nRegister by ${formatDate(deadline)}!`
                         : null
                     }`,
                     url: url,
