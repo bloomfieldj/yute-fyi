@@ -138,6 +138,30 @@ const Button = styled("button", {
   transition: "all 300ms ease",
 });
 
+const LoadingButton = styled("button", {
+  all: "unset",
+  display: "flex",
+  justifySelf: "center",
+  p: "$3",
+  border: `solid 1px ${"$slate7"}`,
+  color: "$slate11",
+  width: "fit-content",
+  mx: "auto",
+  my: "$2",
+  br: "$4",
+  fontSize: "$3",
+  fontWeight: "500",
+  "@bp1": {
+    fontSize: "$4",
+  },
+  "@bp2": {
+    fontSize: "$5",
+  },
+  background: "$buttonHover",
+  cursor: "not-allowed",
+  transform: "translateY(2px)",
+});
+
 const Span = styled("span", {
   color: "$text",
 });
@@ -297,9 +321,7 @@ const Add = ({ user }: { user: User }) => {
           </Fieldset>
 
           {submitting ? (
-            <Button disabled>
-              <Span>Submitting...</Span>
-            </Button>
+            <LoadingButton>Posting...</LoadingButton>
           ) : (
             <Button type="submit">
               <Span>Submit</Span>
