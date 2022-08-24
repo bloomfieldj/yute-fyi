@@ -11,6 +11,7 @@ import {
   supabaseClient,
   withPageAuth,
 } from "@supabase/auth-helpers-nextjs";
+import { format } from "date-fns";
 
 const Container = styled("div", {
   height: "100vh",
@@ -176,10 +177,20 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
   const [location, setLocation] = useState<string>(post.location);
   const [minAge, setMinAge] = useState<number>(post.min_age);
   const [maxAge, setMaxAge] = useState<number>(post.max_age);
-  const [startDate, setStartDate] = useState<Date>(post.start_date);
-  const [endDate, setEndDate] = useState<Date>(post.end_date);
-  const [deadline, setDeadline] = useState<Date>(post.deadline);
+  const [startDate, setStartDate] = useState<Date | String>(post.start_date);
+  const [endDate, setEndDate] = useState<Date | String>(post.end_date);
+  const [deadline, setDeadline] = useState<Date | String>(post.deadline);
   const [url, setUrl] = useState<URL>(post.url);
+  
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+
+    const correctDate = new Date(
+      date.valueOf() + date.getTimezoneOffset() * 60 * 1000
+    );
+
+    return format(correctDate, "yyyy-MM-dd");
+  };
 
   const handleUpdate = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -334,7 +345,7 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
               id="start_date"
               name="start_date"
               value={String(startDate)}
-              onChange={(e) => setStartDate(new Date(e.target.value))}
+              onChange={(e) => setStartDate(formatDate(e.target.value))}
               required
             />
             <Label htmlFor="end_date">End Date</Label>
@@ -343,7 +354,7 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
               id="end_date"
               name="end_date"
               value={String(endDate)}
-              onChange={(e) => setEndDate(new Date(e.target.value))}
+              onChange={(e) => setEndDate(formatDate(e.target.value))}
               required
             />
           </Fieldset>
@@ -355,7 +366,7 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
               id="deadline"
               name="deadline"
               value={String(deadline)}
-              onChange={(e) => setDeadline(new Date(e.target.value))}
+              onChange={(e) => setDeadline(formatDate(e.target.value))}
               required
             />
           </Fieldset>
