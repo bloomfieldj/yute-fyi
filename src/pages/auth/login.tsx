@@ -220,7 +220,6 @@ const Login = () => {
       setWorking(false);
       alert(error.message);
     } else {
-      setWorking(false);
       router.prefetch("/posts");
       router.push("/posts");
     }
@@ -269,7 +268,7 @@ const Login = () => {
             </Fieldset>
 
             {working ? (
-              <LoadingButton>Loading...</LoadingButton>
+              <LoadingButton>Logging in...</LoadingButton>
             ) : (
               <Button type="submit">
                 <Span>Sign in</Span>

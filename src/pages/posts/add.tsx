@@ -226,7 +226,6 @@ const Add = ({ user }: { user: User }) => {
       if (error) {
         alert(error.message);
       } else {
-        setSubmitting(false);
         router.push("/posts");
       }
     }

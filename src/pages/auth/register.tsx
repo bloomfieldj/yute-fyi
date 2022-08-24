@@ -249,7 +249,6 @@ const Register = () => {
     }
 
     if (user) {
-      setWorking(false);
       alert("Verify your email to start posting.");
       router.push("/");
     }
@@ -361,7 +360,7 @@ const Register = () => {
           </Fieldset>
 
           {working ? (
-            <LoadingButton> Loading... </LoadingButton>
+            <LoadingButton> Registering... </LoadingButton>
           ) : (
             <Button type="submit">
               <Span>Register</Span>

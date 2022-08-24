@@ -188,7 +188,7 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
       "https://res.cloudinary.com/dligqmt0x/image/upload/v1661320004/fndrs_banner_i5zh0f.png",
   };
   const router = useRouter();
-  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [title, setTitle] = useState<string>(post.title);
   const [organization, setOrganization] = useState<string>(post.organization);
   const [description, setDescription] = useState<string>(post.description);
@@ -201,6 +201,8 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
   const handleUpdate = async (event: React.SyntheticEvent) => {
     event.preventDefault();
 
+    setSubmitting(true);
+
     if (post.user_id !== user.id) {
       alert("Unable to edit a post that doesn't belong to you.");
       router.push("/posts");
@@ -209,11 +211,13 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
 
     if (startDate && endDate && startDate > endDate) {
       alert("The start date must be before the end date.");
+      setSubmitting(false);
       return false;
     }
 
     if (deadline && startDate && deadline > startDate) {
       alert("The regsistration deadline must be before the start date.");
+      setSubmitting(false);
       return false;
     }
 
@@ -237,10 +241,10 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
       .eq("id", post.id);
 
     if (error) {
+      setSubmitting(false);
       alert(error.message);
     } else {
       alert("Post updated successfully.");
-      setSubmitted(true);
       router.push("/posts");
     }
   };
@@ -364,7 +368,7 @@ const Update = ({ post, user }: { post: Post; user: User }) => {
             />
           </Fieldset>
 
-          {submitted ? (
+          {submitting ? (
             <LoadingButton>Updating...</LoadingButton>
           ) : (
             <Button type="submit">
